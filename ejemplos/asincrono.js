@@ -1,6 +1,6 @@
 'use strict';
 
-console.log('Empiezo')
+//console.log('Refranes')
 
 //función que escribe un texto en la consola tras 2 segundos
 function escribeTras2Segundos(texto, instruccionesParaDespues) {
@@ -15,4 +15,12 @@ escribeTras2Segundos('Texto1', function () {
 		console.log('Termino')
 	});
 })
+
+
+
+
+
+
+
+
 

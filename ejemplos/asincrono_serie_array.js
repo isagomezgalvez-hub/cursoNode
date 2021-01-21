@@ -10,21 +10,18 @@ function escribeTras2Segundos(texto, instruccionesParaDespues) {
 	}, 2000)
 }
 
-function serie(n, fn, callback) {
-	if (n == 0) { // si ya he terminado salgo
+function serie(arr, fn, callback) {
+	if (arr.length == 0) { // si ya he terminado salgo
 		callback();
 		return;
 	}
-	n = n - 1
 	//fn es escribeTras2Segundos
-	fn('texto' + n, function () { // este callback es un "cuando termines haz esto(instrucciones para despues)"
-		serie(n, fn, callback);
+	fn('texto' + ' ' + arr.shift(), function () { // este callback es un "cuando termines haz esto(instrucciones para despues)"
+		serie(arr, fn, callback);
 	})
 }
 
-serie(5, escribeTras2Segundos, function () {
+serie([1, 2, 3, 4, 5], escribeTras2Segundos, function () {
 	console.log('termino')
 });
 
-
-// bucle asincrono repite escribeTras2Segundos 18 veces
