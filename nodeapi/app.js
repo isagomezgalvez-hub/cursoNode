@@ -14,15 +14,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//middleware de ficheros estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/test', function (req, res, next) {
-  //hay dos opciones
-  //res.send('ok'); //responder
-  //console.log('recibo una peticion a', req.originalUrl)
-  next();
-})
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
