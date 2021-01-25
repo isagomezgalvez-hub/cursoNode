@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { query, validationResult } = require('express-validator');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -38,11 +39,23 @@ router.get('/parametros/:dato/piso/:piso/puerta/:puerta', (req, res, next) => {
 /* GET /parametros en la query */
 //http://localhost:3000/querystring/?dato=3400
 //http://localhost:3000/querystring/?dato=3400&otrodato=azul
-router.get('/querystring/', (req, res, next) => {
+router.get('/querystring/', [ //validaciones
+  query('dato').isNumeric().withMessage('must be numeric'),
+  query('talla').isAlpha().withMessage('must be letras'),
+  query('talla').custom(talla => {
+    if (talla !== 'L' && talla !== 'M') return false;
+    return true;
+  }).withMessage('Must be L or M')
+], (req, res, next) => {
+  validationResult(req).throw();
   const dato = req.query.dato;
   console.log(req.query)
   res.send('He recibido el dato: ' + dato)
 })
+
+
+
+
 
 /* POST /parametros en la query */
 router.post('/enelbody', (req, res, next) => {
