@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% include header.html %>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>Welcome to <%= title %>
+
+    </p>
+    <h2>Ejemplo de una inyeccion de código</h2>
+    <p>
+      <%= valorInyeccion %>
+    </p>
+
+    <h2>Incluyendo una condición</h2>
+    <% if (condicion.esPar) { %>
+      <p>
+      <p>
+        <%= condicion.segundo %>
+          es par
+      </p>
+      </p>
+      <% } else { %>
+        <p>
+          <%= condicion.segundo %>
+            es impar
+        </p>
+        <% } %>
+
+          <h2>Mostrar un array de objetos</h2>
+          <% users.forEach(user=>{%>
+            <p>
+              El usuario <%= user.name %> tiene <%= user.age %> años
+            </p>
+            <% }) %>
+</body>
+
+</html>

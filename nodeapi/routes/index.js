@@ -4,7 +4,20 @@ const { query, param, validationResult } = require('express-validator');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.locals.ejemplo = 'Esto es un ejemplo'
+  res.locals.valorInyeccion = '<script>alert("Codigo inyectado")</script>'
+  const segundoActual = (new Date().getSeconds())
+  res.locals.condicion = {
+    segundo: segundoActual,
+    esPar: segundoActual % 2 === 0,
+  }
+
+  res.locals.users = [
+    { name: 'Smith', age: '31' },
+    { name: 'Brow', age: '21' },
+    { name: 'Ada', age: '32' }
+  ]
+  res.render('index');
 });
 
 /* GET /parametroenruta/* */
