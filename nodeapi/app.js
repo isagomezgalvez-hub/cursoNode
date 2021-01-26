@@ -29,12 +29,8 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-
-  //es un error de validacion
-  if (err.array) {
-    const errorInfo = err.array({
-      onlyFirstError: true
-    })[0];
+  if (err.array) { // es un error de validación
+    const errorInfo = err.array({ onlyFirstError: true })[0];
     err.message = `Not valid - ${errorInfo.param} ${errorInfo.msg}`;
     err.status = 422;
   }
