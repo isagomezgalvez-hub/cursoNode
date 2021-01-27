@@ -6,12 +6,15 @@ var logger = require('morgan');
 
 var app = express();
 
+const conectionBD = require('./lib/connectMongoose.js');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
 //cambiar la extensión de vistas
 app.set('view engine', 'html');
-app.engine('html', require('ejs').__express)
+app.engine('html', require('ejs').__express);
 app.locals.title = 'NodeAPI'
 
 
